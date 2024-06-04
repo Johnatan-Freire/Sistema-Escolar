@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
-    <link href="../../../public/css/main.css" rel="stylesheet" />
-    <script src="../../../public/js/main.js" defer></script>
-</head>
 
+    <link href="../css/main.css" rel="stylesheet" />
+    <script src="../js/main.js"></script>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+</head>
 <body class="bg-gray-100 dark:bg-gray-900 dark:text-white">
     <div class="border-b border-gray-200 dark:border-gray-700">
         <ul class="justify-center flex flex-wrap -mb-px text-sm font-medium text-center text-gray-500 dark:text-gray-400">
@@ -59,5 +59,4 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </body>
-
 </html>
