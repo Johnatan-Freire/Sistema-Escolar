@@ -35,9 +35,15 @@
             </a>
         </li>
         <li>
-            <div id="theme-toggle">
-                <span>TEMA</span>
+            <div class="absolute top-0 right-0 p-4">
+                <input type="checkbox" class="checkbox" id="theme-toggle">
+                <label for="theme-toggle" class="checkbox-label">
+                    <i class="fas fa-moon"></i>
+                    <i class="fas fa-sun"></i>
+                    <span class="ball"></span>
+                </label>
             </div>
         </li>
+        
     </ul>
 </div>
