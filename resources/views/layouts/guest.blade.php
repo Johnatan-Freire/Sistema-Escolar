@@ -11,13 +11,12 @@
     @vite('resources/js/main.js')
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 dark:text-white">
-    @include('templates.header')
+    @component('components.header', ['type' => 'guest'])
+    @endcomponent
 
     <div class="content">
         @yield('content')
     </div>
-
-    @include('templates.footer')
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js" defer></script>
 </body>
