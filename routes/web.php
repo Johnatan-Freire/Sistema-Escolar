@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
-
+use App\Http\Controllers\StudentsController;
 
 // Página inicial
 Route::get('/', [HomeController::class, 'index'])->name('welcome');
@@ -14,3 +14,6 @@ Route::post('/login', [AuthController::class, 'login']);
 
 // Logout
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+//alunos
+Route::get('/student', [StudentsController::class, 'index'])->name('student');
