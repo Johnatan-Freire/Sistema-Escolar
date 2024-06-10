@@ -25,4 +25,9 @@ class Student extends Model
         'situacao_financeira',
         'observacao',
     ];
+
+    public function grades()
+    {
+        return $this->hasMany(Grade::class);
+    }
 }
