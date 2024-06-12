@@ -4,6 +4,7 @@
 
 @section('content')
     @auth
+        @include('components.student.cardsRegister')
         @include('components.student.register')
     @endauth
 

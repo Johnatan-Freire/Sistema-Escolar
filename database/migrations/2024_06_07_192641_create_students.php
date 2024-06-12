@@ -12,8 +12,10 @@ return new class extends Migration
             $table->id();
             $table->string('nome')->nullable(false);
             $table->string('cpf')->nullable(false);
+            $table->date('data_nascimento')->nullable(false);
             $table->string('nome_responsavel')->nullable();
             $table->string('cpf_responsavel')->nullable();
+            $table->date('data_nascimento_responsavel')->nullable();
             $table->string('numero')->nullable(false);
             $table->string('numero2')->nullable();
             $table->string('cep')->nullable(false);

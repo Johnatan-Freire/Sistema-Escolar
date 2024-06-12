@@ -65,6 +65,8 @@ class StudentController extends Controller
         $request->validate([
             'nome' => 'required',
             'cpf' => 'required',
+            'data_nascimento' => 'required|date',
+            'data_nascimento_responsavel' => 'nullable|date',
         ]);
 
         $student = Student::create($request->all());
@@ -76,6 +78,8 @@ class StudentController extends Controller
         $request->validate([
             'nome' => 'required',
             'cpf' => 'required',
+            'data_nascimento' => 'required|date',
+            'data_nascimento_responsavel' => 'nullable|date',
         ]);
 
         $student = Student::findOrFail($id);

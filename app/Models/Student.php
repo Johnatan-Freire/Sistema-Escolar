@@ -12,8 +12,10 @@ class Student extends Model
     protected $fillable = [
         'nome',
         'cpf',
+        'data_nascimento',
         'nome_responsavel',
         'cpf_responsavel',
+        'data_nascimento_responsavel',
         'numero',
         'numero2',
         'cep',
