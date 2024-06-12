@@ -30,7 +30,7 @@ class CourseController extends Controller
         ]);
 
         $course = Course::create($request->all());
-        return redirect()->route('courses.index')->with('success', 'Course created successfully.');
+        return redirect()->route('courses.index')->with('success', 'Curso criado com sucesso.');
     }
 
     public function update(Request $request, $id)
@@ -45,13 +45,13 @@ class CourseController extends Controller
 
         $course = Course::findOrFail($id);
         $course->update($request->all());
-        return redirect()->route('courses.index')->with('success', 'Course updated successfully.');
+        return redirect()->route('courses.index')->with('success', 'Curso atualizado com sucesso.');
     }
 
     public function destroy($id)
     {
         $course = Course::findOrFail($id);
         $course->delete();
-        return redirect()->route('courses.index')->with('success', 'Course deleted successfully.');
+        return redirect()->route('courses.index')->with('success', 'Curso deletado com sucesso.');
     }
 }

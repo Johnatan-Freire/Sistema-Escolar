@@ -1,4 +1,4 @@
-@extends(auth()->check() ? 'layouts.admin' : 'layouts.guest')
+@extends('layouts.main')
 
 @section('title', 'Welcome')
 

@@ -41,12 +41,17 @@ class StudentController extends Controller
             return response()->json(['students' => $students]);
         }
 
-        return view('admin.student', [
+        return view('admin.student.student', [
             'students' => $students,
             'search' => $request->search,
             'searchOption' => $request->input('searchOption', 'Nome'),
             'situacao' => $request->input('situacao', [])
         ]);
+    }
+
+    public function create()
+    {
+        return view('admin.student.register');
     }
 
     public function show($id)
@@ -63,7 +68,7 @@ class StudentController extends Controller
         ]);
 
         $student = Student::create($request->all());
-        return redirect()->route('students.index')->with('success', 'Student created successfully.');
+        return redirect()->route('students.index')->with('success', 'Aluno criado com sucesso.');
     }
 
     public function update(Request $request, $id)
@@ -75,13 +80,13 @@ class StudentController extends Controller
 
         $student = Student::findOrFail($id);
         $student->update($request->all());
-        return redirect()->route('students.index')->with('success', 'Student updated successfully.');
+        return redirect()->route('students.index')->with('success', 'Aluno atualizado com sucesso.');
     }
 
     public function destroy($id)
     {
         $student = Student::findOrFail($id);
         $student->delete();
-        return redirect()->route('students.index')->with('success', 'Student deleted successfully.');
+        return redirect()->route('students.index')->with('success', 'Aluno deletado com sucesso.');
     }
 }

@@ -1,10 +1,10 @@
-@extends(auth()->check() ? 'layouts.admin' : 'layouts.guest')
+@extends('layouts.main')
 
 @section('title', 'Welcome')
 
 @section('content')
     @auth
-        @include('components.students')
+        @include('components.student.students')
     @endauth
 
     @guest

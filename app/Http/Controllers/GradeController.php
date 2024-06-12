@@ -28,7 +28,7 @@ class GradeController extends Controller
         ]);
 
         $grade = Grade::create($request->all());
-        return redirect()->route('grades.index')->with('success', 'Grade created successfully.');
+        return redirect()->route('grades.index')->with('success', 'Nota criada com sucesso.');
     }
 
     public function update(Request $request, $id)
@@ -41,13 +41,13 @@ class GradeController extends Controller
 
         $grade = Grade::findOrFail($id);
         $grade->update($request->all());
-        return redirect()->route('grades.index')->with('success', 'Grade updated successfully.');
+        return redirect()->route('grades.index')->with('success', 'Nota atualizada com sucesso.');
     }
 
     public function destroy($id)
     {
         $grade = Grade::findOrFail($id);
         $grade->delete();
-        return redirect()->route('grades.index')->with('success', 'Grade deleted successfully.');
+        return redirect()->route('grades.index')->with('success', 'Nota deletada com sucesso.');
     }
 }

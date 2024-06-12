@@ -9,8 +9,6 @@ class Student extends Model
 {
     use HasFactory;
 
-    protected $table = 'students';
-
     protected $fillable = [
         'nome',
         'cpf',
@@ -29,5 +27,15 @@ class Student extends Model
     public function grades()
     {
         return $this->hasMany(Grade::class);
+    }
+
+    public function getDebtAttribute()
+    {
+        return $this->courses->sum('preco');
+    }
+
+    public function courses()
+    {
+        return $this->belongsToMany(Course::class, 'course_student');
     }
 }

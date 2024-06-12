@@ -11,8 +11,13 @@
     @vite('resources/js/main.js')
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 dark:text-white">
-    @component('components.header', ['type' => 'guest'])
-    @endcomponent
+    @if(auth()->check())
+        @component('components.header', ['type' => 'admin'])
+        @endcomponent
+    @else
+        @component('components.header', ['type' => 'guest'])
+        @endcomponent
+    @endif
 
     <div class="content">
         @yield('content')

@@ -27,7 +27,7 @@ class ModuleController extends Controller
         ]);
 
         $module = Module::create($request->all());
-        return redirect()->route('modules.index')->with('success', 'Module created successfully.');
+        return redirect()->route('modules.index')->with('success', 'Módulo criado com sucesso.');
     }
 
     public function update(Request $request, $id)
@@ -39,13 +39,13 @@ class ModuleController extends Controller
 
         $module = Module::findOrFail($id);
         $module->update($request->all());
-        return redirect()->route('modules.index')->with('success', 'Module updated successfully.');
+        return redirect()->route('modules.index')->with('success', 'Módulo atualizado com sucesso.');
     }
 
     public function destroy($id)
     {
         $module = Module::findOrFail($id);
         $module->delete();
-        return redirect()->route('modules.index')->with('success', 'Module deleted successfully.');
+        return redirect()->route('modules.index')->with('success', 'Módulo deletado com sucesso.');
     }
 }
