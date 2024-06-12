@@ -37,24 +37,35 @@
                             <path clip-rule="evenodd" fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 111.414 1.414l-4 4a1 1 01-1.414 0l-4-4a1 1 010-1.414z" />
                         </svg>
                     </button>
-                    <div id="filterDropdown" class="z-10 hidden w-48 p-3 bg-white rounded-lg shadow dark:bg-gray-700">
-                        <h6 class="mb-3 text-sm font-medium text-gray-900 dark:text-white">Categoria</h6>
+                    <div id="filterDropdown" class="z-10 hidden w-36 p-3 bg-white rounded-lg shadow dark:bg-gray-700">
                         <ul class="space-y-2 text-sm" aria-labelledby="dropdownDefault">
                             <li class="flex items-center">
-                                <input id="ativo" type="checkbox" name="situacao[]" value="Ativo" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" {{ in_array('Ativo', request('situacao', [])) ? 'checked' : '' }} />
-                                <label for="ativo" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">Ativos</label>
+                                <label class="text-gray-800 dark:text-white relative flex items-center cursor-pointer">
+                                    <input id="ativo" type="checkbox" name="situacao[]" value="Ativo" class="sr-only peer" {{ in_array('Ativo', request('situacao', [])) ? 'checked' : '' }} />
+                                    <div class="w-4 h-4 bg-transparent border-2 border-green-500 rounded-full peer-checked:bg-green-500 peer-checked:border-green-500 peer-hover:shadow-lg peer-hover:shadow-green-500/50 peer-checked:shadow-lg peer-checked:shadow-green-500/50 transition duration-300 ease-in-out"></div>
+                                    <span class="ml-2 text-gray-900 dark:text-white">Ativos</span>
+                                </label>
                             </li>
                             <li class="flex items-center">
-                                <input id="cancelado" type="checkbox" name="situacao[]" value="Cancelado" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" {{ in_array('Cancelado', request('situacao', [])) ? 'checked' : '' }} />
-                                <label for="cancelado" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">Cancelados</label>
+                                <label class="text-gray-800 dark:text-white relative flex items-center cursor-pointer">
+                                    <input id="cancelado" type="checkbox" name="situacao[]" value="Cancelado" class="sr-only peer" {{ in_array('Cancelado', request('situacao', [])) ? 'checked' : '' }} />
+                                    <div class="w-4 h-4 bg-transparent border-2 border-red-500 rounded-full peer-checked:bg-red-500 peer-checked:border-red-500 peer-hover:shadow-lg peer-hover:shadow-red-500/50 peer-checked:shadow-lg peer-checked:shadow-red-500/50 transition duration-300 ease-in-out"></div>
+                                    <span class="ml-2 text-gray-900 dark:text-white">Cancelados</span>
+                                </label>
                             </li>
                             <li class="flex items-center">
-                                <input id="formado" type="checkbox" name="situacao[]" value="Formado" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" {{ in_array('Formado', request('situacao', [])) ? 'checked' : '' }} />
-                                <label for="formado" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">Formados</label>
+                                <label class="text-gray-800 dark:text-white relative flex items-center cursor-pointer">
+                                    <input id="formado" type="checkbox" name="situacao[]" value="Formado" class="sr-only peer" {{ in_array('Formado', request('situacao', [])) ? 'checked' : '' }} />
+                                    <div class="w-4 h-4 bg-transparent border-2 border-blue-500 rounded-full peer-checked:bg-blue-500 peer-checked:border-blue-500 peer-hover:shadow-lg peer-hover:shadow-blue-500/50 peer-checked:shadow-lg peer-checked:shadow-blue-500/50 transition duration-300 ease-in-out"></div>
+                                    <span class="ml-2 text-gray-900 dark:text-white">Formados</span>
+                                </label>
                             </li>
                             <li class="flex items-center">
-                                <input id="trancado" type="checkbox" name="situacao[]" value="Trancado" class="w-4 h-4 bg-gray-100 border-gray-300 rounded text-primary-600 focus:ring-primary-500 dark:focus:ring-primary-600 dark:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500" {{ in_array('Trancado', request('situacao', [])) ? 'checked' : '' }} />
-                                <label for="trancado" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-100">Trancados</label>
+                                <label class="text-gray-800 dark:text-white relative flex items-center cursor-pointer">
+                                    <input id="trancado" type="checkbox" name="situacao[]" value="Trancado" class="sr-only peer" {{ in_array('Trancado', request('situacao', [])) ? 'checked' : '' }} />
+                                    <div class="w-4 h-4 bg-transparent border-2 border-yellow-500 rounded-full peer-checked:bg-yellow-500 peer-checked:border-yellow-500 peer-hover:shadow-lg peer-hover:shadow-yellow-500/50 peer-checked:shadow-lg peer-checked:shadow-yellow-500/50 transition duration-300 ease-in-out"></div>
+                                    <span class="ml-2 text-gray-900 dark:text-white">Trancados</span>
+                                </label>
                             </li>
                         </ul>
                     </div>

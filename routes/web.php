@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\AboutController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AuthController;
@@ -44,3 +46,6 @@ Route::get('/grades/{id}', [GradeController::class, 'show'])->name('grades.show'
 Route::post('/grades', [GradeController::class, 'store'])->name('grades.store');
 Route::put('/grades/{id}', [GradeController::class, 'update'])->name('grades.update');
 Route::delete('/grades/{id}', [GradeController::class, 'destroy'])->name('grades.destroy');
+
+//sobre
+Route::get('/sobre', [AboutController::class, 'index'])->name('about.index');
