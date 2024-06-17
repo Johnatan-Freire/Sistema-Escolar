@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-//Jquery barra de pesquisa do aluno
+//Filtros barra de pesquisa do aluno
 $(document).ready(function () {
     const searchInput = $('#simple-search');
     const searchOptions = $('#searchOptions');
@@ -76,9 +76,13 @@ $(document).ready(function () {
             type: searchForm.attr('method'),
             data: formData,
             success: function (response) {
+                console.log('Server response:', response); // Log the response to check its structure
                 const tableBody = $('#studentsTableBody');
                 tableBody.empty();
+
                 response.students.forEach(student => {
+                    console.log('Student data:', student); // Log each student's data
+
                     const colorClass = {
                         'ativo': 'bg-green-500',
                         'trancado': 'bg-yellow-500',
@@ -90,10 +94,10 @@ $(document).ready(function () {
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <td class="px-6 py-4">${student.id}</td>
                             <th scope="row" class="px-6 py-2 text-gray-900 whitespace-nowrap dark:text-white">
-                                <div class="text-base font-semibold">${student.nome}</div>
-                                <div class="font-normal text-gray-500">${student.numero}</div>
+                                <div class="text-base font-semibold">${student.name || student.nome}</div>
+                                <div class="font-normal text-gray-500">${student.phone || student.fone}</div>
                             </th>
-                            <td class="px-6 py-4">${student.curso}</td>
+                            <td class="px-6 py-4">${student.course || student.curso}</td>
                             <td class="px-6 py-4">
                                 <div class="flex items-center">
                                     <div class="h-2.5 w-2.5 rounded-full ${colorClass} me-2"></div> ${student.situacao_cadastral}
@@ -111,6 +115,9 @@ $(document).ready(function () {
                         </tr>`;
                     tableBody.append(row);
                 });
+            },
+            error: function (error) {
+                console.error('Error fetching results:', error);
             }
         });
     }
@@ -118,4 +125,63 @@ $(document).ready(function () {
     searchInput.on('input', fetchResults);
     searchOptions.on('change', fetchResults);
     filterInputs.on('change', fetchResults);
+});
+
+
+
+// Mascara para formularios
+$('#zip').mask('00000-000');
+$('#phone').mask('(00) 00000-0000');
+$('#phone2').mask('(00) 00000-0000');
+$('#cpf').mask('000.000.000-00', { reverse: true });
+$('#responsible_cpf').mask('000.000.000-00', { reverse: true });
+$('#money').mask("#.##0,00", { reverse: true });
+
+
+//encontrar endereço via cep
+$(document).ready(function () {
+
+    function limpa_formulário_cep() {
+        $("#street").val("");
+        $("#neighborhood").val("");
+        $("#city").val("");
+        $("#state").val("");
+        $("#ibge").val("");
+    }
+
+    $("#zip").blur(function () {
+        var cep = $(this).val().replace(/\D/g, '');
+        if (cep != "") {
+            var validacep = /^[0-9]{8}$/;
+            if (validacep.test(cep)) {
+                $("#street").val("...");
+                $("#neighborhood").val("...");
+                $("#city").val("...");
+                $("#state").val("...");
+                $("#ibge").val("...");
+
+                $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
+
+                    if (!("erro" in dados)) {
+                        $("#street").val(dados.logradouro);
+                        $("#neighborhood").val(dados.bairro);
+                        $("#city").val(dados.localidade);
+                        $("#state").val(dados.uf);
+                        $("#ibge").val(dados.ibge);
+                    }
+                    else {
+                        limpa_formulário_cep();
+                        alert("CEP não encontrado.");
+                    }
+                });
+            }
+            else {
+                limpa_formulário_cep();
+                alert("Formato de CEP inválido.");
+            }
+        }
+        else {
+            limpa_formulário_cep();
+        }
+    });
 });

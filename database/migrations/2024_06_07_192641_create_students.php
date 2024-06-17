@@ -16,14 +16,14 @@ return new class extends Migration
             $table->string('nome_responsavel')->nullable();
             $table->string('cpf_responsavel')->nullable();
             $table->date('data_nascimento_responsavel')->nullable();
-            $table->string('numero')->nullable(false);
-            $table->string('numero2')->nullable();
+            $table->string('fone')->nullable(false);
+            $table->string('fone2')->nullable();
             $table->string('cep')->nullable(false);
-            $table->string('endereco')->nullable();
-            $table->string('curso')->nullable();
-            $table->string('situacao_cadastral')->nullable();
-            $table->string('situacao_financeira')->nullable();
+            $table->string('endereco')->nullable(false);
             $table->text('observacao')->nullable();
+            $table->string('curso')->nullable();
+            $table->string('situacao_financeira')->nullable();
+            $table->string('situacao_cadastral')->nullable();
             $table->timestamps();
         });
     }

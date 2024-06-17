@@ -16,13 +16,10 @@ class Student extends Model
         'nome_responsavel',
         'cpf_responsavel',
         'data_nascimento_responsavel',
-        'numero',
-        'numero2',
+        'fone',
+        'fone2',
         'cep',
-        'endereco',
-        'curso',
-        'situacao_cadastral',
-        'situacao_financeira',
+        'endereco', 
         'observacao',
     ];
 

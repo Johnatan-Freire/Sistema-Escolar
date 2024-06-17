@@ -92,7 +92,7 @@
                 <td class="px-6 py-4">{{ $student->id }}</td>
                 <th scope="row" class="px-6 py-2 text-gray-900 whitespace-nowrap dark:text-white">
                     <div class="text-base font-semibold">{{ $student->nome }}</div>
-                    <div class="font-normal text-gray-500">{{ $student->numero }}</div>
+                    <div class="font-normal text-gray-500">{{ $student->fone }}</div>
                 </th>
                 <td class="px-6 py-4">{{ $student->curso }}</td>
                 <td class="px-6 py-4">

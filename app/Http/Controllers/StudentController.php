@@ -28,7 +28,7 @@ class StudentController extends Controller
                     $query->where('cpf', 'like', $searchTerm);
                     break;
                 case 'Responsavel':
-                    $query->where('responsavel', 'like', $searchTerm);
+                    $query->where('nome_responsavel', 'like', $searchTerm);
                     break;
                 default:
                     $query->where('nome', 'like', $searchTerm);
@@ -63,29 +63,70 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nome' => 'required',
-            'cpf' => 'required',
-            'data_nascimento' => 'required|date',
-            'data_nascimento_responsavel' => 'nullable|date',
+            'name' => 'required|string|max:255',
+            'cpf' => 'required|string|max:14',
+            'date_birth' => 'required|date',
+            'responsible_name' => 'nullable|string|max:255',
+            'responsible_cpf' => 'nullable|string|max:14',
+            'responsible_date_birth' => 'nullable|date',
+            'phone' => 'required|string|max:15',
+            'phone2' => 'nullable|string|max:15',
+            'zip' => 'required|string|max:9',
+            'city' => 'required|string|max:255',
+            'state' => 'required|string|max:2',
+            'neighborhood' => 'required|string|max:255',
+            'street' => 'required|string|max:255',
+            'house_number' => 'required|string|max:255',
+            'notes' => 'nullable|string',
         ]);
 
-        $student = Student::create($request->all());
+        $endereco = $request->input('street') . ', ' . $request->input('house_number') . ', ' . $request->input('neighborhood') . ', ' . $request->input('city') . ' - ' . $request->input('state') . ', ' . $request->input('zip');
+
+        Student::create([
+            'nome' => $request->input('name'),
+            'cpf' => $request->input('cpf'),
+            'data_nascimento' => $request->input('date_birth'),
+            'nome_responsavel' => $request->input('responsible_name'),
+            'cpf_responsavel' => $request->input('responsible_cpf'),
+            'data_nascimento_responsavel' => $request->input('responsible_date_birth'),
+            'fone' => $request->input('phone'),
+            'fone2' => $request->input('phone2'),
+            'cep' => $request->input('zip'),
+            'endereco' => $endereco,
+            'observacao' => $request->input('notes'),
+        ]);
+
         return redirect()->route('students.index')->with('success', 'Aluno criado com sucesso.');
     }
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nome' => 'required',
-            'cpf' => 'required',
-            'data_nascimento' => 'required|date',
-            'data_nascimento_responsavel' => 'nullable|date',
+            'name' => 'required|string|max:255',
+            'cpf' => 'required|string|max:14',
+            'date_birth' => 'required|date',
+            'responsible_name' => 'nullable|string|max:255',
+            'responsible_cpf' => 'nullable|string|max:14',
+            'responsible_date_birth' => 'nullable|date',
+            'phone' => 'required|string|max:15',
+            'phone2' => 'nullable|string|max:15',
+            'zip' => 'required|string|max:9',
+            'city' => 'required|string|max:255',
+            'state' => 'required|string|max:2',
+            'neighborhood' => 'required|string|max:255',
+            'street' => 'required|string|max:255',
+            'house_number' => 'required|string|max:255',
+            'notes' => 'nullable|string',
         ]);
 
+        $endereco = $request->input('street') . ', ' . $request->input('house_number') . ', ' . $request->input('neighborhood') . ', ' . $request->input('city') . ' - ' . $request->input('state') . ', ' . $request->input('zip');
+
         $student = Student::findOrFail($id);
-        $student->update($request->all());
+        $student->update(array_merge($request->all(), ['endereco' => $endereco]));
+
         return redirect()->route('students.index')->with('success', 'Aluno atualizado com sucesso.');
     }
+
 
     public function destroy($id)
     {
