@@ -7,17 +7,19 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('modules', function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('student_id')->constrained()->onDelete('cascade');
             $table->foreignId('course_id')->constrained()->onDelete('cascade');
-            $table->string('nome')->nullable(false);
-            $table->text('descricao')->nullable();
+            $table->decimal('amount', 8, 2);
+            $table->string('status')->default('pending'); // pending, paid, overdue
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('modules');
+        Schema::dropIfExists('payments');
     }
 };
+

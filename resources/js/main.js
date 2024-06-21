@@ -185,3 +185,28 @@ $(document).ready(function () {
         }
     });
 });
+
+// Atualizar turno autmomaticamente
+function updateTurno() {
+    const startTime = document.getElementById('start-time').value;
+    const endTime = document.getElementById('end-time').value;
+    const schedule = document.getElementById('schedule');
+
+    console.log("Start Time:", startTime);
+    console.log("End Time:", endTime);
+
+    if (startTime >= '08:00' && startTime < '12:00' && endTime > '08:00' && endTime <= '12:00') {
+        schedule.value = 'Matutino';
+    } else if (startTime >= '12:00' && startTime < '18:00' && endTime > '12:00' && endTime <= '18:00') {
+        schedule.value = 'Vespertino';
+    } else if (startTime >= '18:00' && startTime < '23:00' && endTime > '18:00' && endTime <= '23:00') {
+        schedule.value = 'Noturno';
+    } else {
+        schedule.value = '';
+    }
+
+    console.log("Selected Turno:", schedule.value);
+}
+
+document.getElementById('start-time').addEventListener('change', updateTurno);
+document.getElementById('end-time').addEventListener('change', updateTurno);    

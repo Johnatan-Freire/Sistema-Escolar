@@ -7,17 +7,18 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('modules', function (Blueprint $table) {
+        Schema::create('course_student', function (Blueprint $table) {
             $table->id();
             $table->foreignId('course_id')->constrained()->onDelete('cascade');
-            $table->string('nome')->nullable(false);
-            $table->text('descricao')->nullable();
+            $table->foreignId('student_id')->constrained()->onDelete('cascade');
+            $table->string('situacao')->default('ativo'); // ativo, formado, trancado, cancelado
+            $table->string('situacao_financeira')->default('regular'); // regular, em atraso, quitado
             $table->timestamps();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('modules');
+        Schema::dropIfExists('course_student');
     }
 };

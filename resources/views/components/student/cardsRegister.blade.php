@@ -1,6 +1,6 @@
 <ol class="items-center sm:flex justify-between space-x-6 pb-6 p-4">
     <li class="relative mb-6 sm:mb-0 flex-1">
-        <a href="#" class="block bg-blue-50 dark:bg-gray-800 hover:bg-blue-100 dark:hover:bg-gray-700 p-4 rounded-lg transition duration-300">
+        <a href="{{route('students.create')}}" class="block bg-blue-50 dark:bg-gray-800 hover:bg-blue-100 dark:hover:bg-gray-700 p-4 rounded-lg transition duration-300">
             <div class="flex items-center">
                 <div class="z-10 flex items-center justify-center w-8 h-8 bg-blue-100 rounded-full ring-8 ring-white dark:bg-blue-900 dark:ring-gray-900 shrink-0">
                     <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">

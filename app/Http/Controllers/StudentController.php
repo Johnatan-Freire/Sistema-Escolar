@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use App\Models\Payment;
+use App\Models\Course;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -78,11 +80,12 @@ class StudentController extends Controller
             'street' => 'required|string|max:255',
             'house_number' => 'required|string|max:255',
             'notes' => 'nullable|string',
+            'course_id' => 'required|exists:courses,id', // Adicionando validação para curso
         ]);
 
         $endereco = $request->input('street') . ', ' . $request->input('house_number') . ', ' . $request->input('neighborhood') . ', ' . $request->input('city') . ' - ' . $request->input('state') . ', ' . $request->input('zip');
 
-        Student::create([
+        $student = Student::create([
             'nome' => $request->input('name'),
             'cpf' => $request->input('cpf'),
             'data_nascimento' => $request->input('date_birth'),
@@ -95,6 +98,9 @@ class StudentController extends Controller
             'endereco' => $endereco,
             'observacao' => $request->input('notes'),
         ]);
+
+        $course = Course::findOrFail($request->input('course_id'));
+        $student->addCourse($course);
 
         return redirect()->route('students.index')->with('success', 'Aluno criado com sucesso.');
     }
@@ -122,16 +128,53 @@ class StudentController extends Controller
         $endereco = $request->input('street') . ', ' . $request->input('house_number') . ', ' . $request->input('neighborhood') . ', ' . $request->input('city') . ' - ' . $request->input('state') . ', ' . $request->input('zip');
 
         $student = Student::findOrFail($id);
-        $student->update(array_merge($request->all(), ['endereco' => $endereco]));
+        $student->update([
+            'nome' => $request->input('name'),
+            'cpf' => $request->input('cpf'),
+            'data_nascimento' => $request->input('date_birth'),
+            'nome_responsavel' => $request->input('responsible_name'),
+            'cpf_responsavel' => $request->input('responsible_cpf'),
+            'data_nascimento_responsavel' => $request->input('responsible_date_birth'),
+            'fone' => $request->input('phone'),
+            'fone2' => $request->input('phone2'),
+            'cep' => $request->input('zip'),
+            'endereco' => $endereco,
+            'observacao' => $request->input('notes'),
+        ]);
 
         return redirect()->route('students.index')->with('success', 'Aluno atualizado com sucesso.');
     }
-
 
     public function destroy($id)
     {
         $student = Student::findOrFail($id);
         $student->delete();
         return redirect()->route('students.index')->with('success', 'Aluno deletado com sucesso.');
+    }
+
+    public function addCourseToStudent(Request $request, $id)
+    {
+        $request->validate([
+            'course_id' => 'required|exists:courses,id',
+        ]);
+
+        $student = Student::findOrFail($id);
+        $course = Course::findOrFail($request->input('course_id'));
+        $student->addCourse($course);
+
+        return redirect()->route('students.show', $id)->with('success', 'Curso adicionado com sucesso.');
+    }
+
+    public function removeCourseFromStudent(Request $request, $id)
+    {
+        $request->validate([
+            'course_id' => 'required|exists:courses,id',
+        ]);
+
+        $student = Student::findOrFail($id);
+        $course = Course::findOrFail($request->input('course_id'));
+        $student->removeCourse($course);
+
+        return redirect()->route('students.show', $id)->with('success', 'Curso removido com sucesso.');
     }
 }
